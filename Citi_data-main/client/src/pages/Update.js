@@ -10,7 +10,7 @@ function Home() {
   const history = useHistory();
 
   const UpdateLogic = () => {
-    Axios.post("http://localhost:3001/update", {
+    Axios.put("http://localhost:3001/update", {
       tablename: tablename,
       derivedcol: derivedcol,
       logic: logic,

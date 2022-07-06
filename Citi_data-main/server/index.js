@@ -61,18 +61,22 @@ app.post("/insert", (req, res) => {
 
 
 app.put("/update", (req, res) => {
+  console.log("hi");
   const tablename = req.body.tablename;
   const derivedcol = req.body.derivedcol;
   const logic = req.body.logic;
+  console.log(tablename, derivedcol, logic);
 
   db.execute(
-    `UPDATE logic_data SET logic = :1 WHERE (tablename = :2 AND derivedcol = :3)`,
+    `UPDATE logic_data SET logic = :1 WHERE tablename = :2 AND derivedcol = :3`,
     [logic, tablename, derivedcol],
+    { autoCommit: true },
     (err, result) => {
       if (err) {
         console.log(err);
       } else {
         res.send(result);
+        console.log(result);
       }
     }
   );
@@ -81,8 +85,9 @@ app.put("/update", (req, res) => {
 app.delete("/delete", (req, res) => {
   const derivedcol = req.body.derivedcol;
   const logic = req.body.logic;
-  db.execute(`DELETE FROM logic_data WHERE (tablename = :1 AND derivedcol = :2)`, 
+  db.execute(`DELETE FROM logic_data WHERE tablename = :1 AND derivedcol = :2`, 
   [tablename, derivedcol], 
+  { autoCommit: true },
   (err, result) => {
     if (err) {
       console.log(err);

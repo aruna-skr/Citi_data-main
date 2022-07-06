@@ -6,14 +6,12 @@ import { Link, useHistory } from "react-router-dom";
 function Home() {
   const [tablename, setTablename] = useState("");
   const [derivedcol, setDerivedcol] = useState("");
-  const [logic, setLogic] = useState("");
   const history = useHistory();
 
   const deleteLogic = () => {
-    Axios.post("http://localhost:3001/delete", {
+    Axios.delete("http://localhost:3001/delete", {
       tablename: tablename,
       derivedcol: derivedcol,
-      logic: logic,
     }).then(() => {});
   };
 

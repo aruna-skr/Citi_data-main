@@ -42,7 +42,7 @@ function Home() {
           }}
         />
 
-        <button onClick={() => insertLogic()}>Insert logic</button>
+        <button type="button" onClick={() => insertLogic()}>Insert logic</button>
       </div>
     </div>
   );
